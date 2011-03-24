@@ -29,6 +29,7 @@ module Transmembrane
   end
 
   class TransmembraneProteinTest < Test::Unit::TestCase
+    include Bio::Transmembrane
     def test_simple
       protein = TransmembraneProtein.new
       tmd = TransmembraneDomainDefinition.new

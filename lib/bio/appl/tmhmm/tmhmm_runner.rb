@@ -1,30 +1,25 @@
+require 'tempfile'
+
 module Bio
   class TMHMM
     class TmHmmWrapper
       # Given an amino acid sequence, return a TransmembraneProtein
       # made up of the predicted transmembrane domains
       def calculate(sequence)
-        rio(:tempdir) do |d|
-          FileUtils.cd(d.to_s) do
-            Tempfile.open('tmhmmin') { |tempfilein|
-              # Write a fasta to the tempfile
-              tempfilein.puts '>wrapperSeq'
-              tempfilein.puts "#{sequence}"
-              tempfilein.close #required. Maybe because it doesn't flush otherwise?
-              
-              Tempfile.open('signalpout') {|out|
-                result = system("tmhmm -short #{tempfilein.path} >#{out.path}")
-                
-                if !result
-                  raise Exception, "Running TMHMM program failed. See $? for details."
-                end
-                
-                
-                line = rio(out.path).readline
-                return TmHmmResult.create_from_short_line(line)
-              }
-            }
+        Bio::Command.mktmpdir do |d|
+          line = nil
+          Bio::Command.call_command(['tmhmm','-short'], :chdir => d) do |io|
+            io.puts '>wrapperSeq'
+            io.puts sequence
+            io.close_write
+            line = io.readline
           end
+          
+          if line.nil?
+            raise Exception, "Error running locally installed TMHMM program 'tmhmm'. Is it properly installed?"
+          end
+          
+          return TmHmmResult.create_from_short_line(line)
         end
       end
     end
