@@ -2,6 +2,8 @@ require 'helper'
 
 module Transmembrane
   class TransmembraneTest < Test::Unit::TestCase
+    include Bio::Transmembrane
+    
     def test_confidenced_transmembrane_domain
       one = ConfidencedTransmembraneDomain.new
       two = ConfidencedTransmembraneDomain.new

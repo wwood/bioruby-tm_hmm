@@ -1,7 +1,4 @@
-# a simple class to represent a TMD
-
-require 'array_pair'
-
+# a simple class to represent a transmembrane domain, and a transmembrane domain containing protein
 module Bio
   module Transmembrane
     class TransmembraneProtein
