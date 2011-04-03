@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Ben J. Woodcroft"]
   s.date = %q{2011-04-03}
   s.default_executable = %q{biotm_hmm}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{A bioruby plugin for interaction with the transmembrane predictor TMHMM}
   s.email = %q{donttrustben@gmail.com}
   s.executables = ["biotm_hmm"]
   s.extra_rdoc_files = [
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{A bioruby plugin for interaction with the transmembrane predictor TMHMM}
   s.test_files = [
     "test/helper.rb",
     "test/test_tm_hmm_wrapper.rb",
