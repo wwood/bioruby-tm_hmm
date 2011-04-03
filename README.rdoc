@@ -1,6 +1,8 @@
 = bio-tm_hmm
 
-Description goes here.
+A bioruby plugin for running TMHMM automatically on multiple sequences in a FASTA file and manipulation of the results
+
+  
 
 == Contributing to bio-tm_hmm
  
