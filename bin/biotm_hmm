@@ -1,76 +1,72 @@
 #!/usr/bin/env ruby
-#
-# BioRuby bio-tm_hmm Plugin
-# Version 0.0.0 
+
 # Author:: Ben J. Woodcroft
 # Copyright:: 2011
 # License:: The Ruby License
 
- USAGE = "Describe biotm_hmm"
-
-if ARGV.size == 0
-  print USAGE
-end
-
+require 'rubygems'
+require 'bio'
 require 'bio-tm_hmm'
 require 'optparse'
 
-# Uncomment when using the bio-logger 
-# require 'bio-logger'
-# Bio::Log::CLI.logger('stderr')
-# Bio::Log::CLI.trace('info')
-
-options = {:example_switch=>false,:show_help=>false}
-opts = OptionParser.new do |o|
-  o.banner = "Usage: #{File.basename($0)} [options] reponame\ne.g. #{File.basename($0)} the-perfect-gem"
-
-  o.on('--example_parameter [EXAMPLE_PARAMETER]', 'TODO: put a description for the PARAMETER') do |example_parameter|
-    # TODO: your logic here, below an example
-    options[:example_parameter] = 'this is a parameter'
+# If being run directly instead of being require'd,
+# output one transmembrane per line, and
+# indicate that a particular protein has no transmembrane domain
+if $0 == __FILE__
+  options = {
+    :filter_in => false,
+    :filter_out => false,
+  }
+  o = OptionParser.new do |opts|
+    opts.banner = [
+      'Usage: tm_hmm_wrapper.rb [-fg] [fasta_filename]',
+      "\tfasta file can also be piped in on STDIN.",
+      "\twithout arguments, a description of the transmembranes is printed out for each input sequence"
+    ]
+    opts.on('-f','--filter-in','Print those sequences that have a transmembrane domain') do
+      options[:filter_in] = true
+    end
+    opts.on('-g','--filter-out','Print those sequences that do NOT have a transmembrane domain') do
+      options[:filter_out] = true
+    end
   end
-  
-  o.separator ""
-  o.on("--switch-example", 'TODO: put a description for the SWITCH') do
-    # TODO: your logic here, below an example
-    self[:example_switch] = true
-  end
+  o.parse!
 
-  # Uncomment the following when using the bio-logger 
-  # o.separator ""
-  # o.on("--logger filename",String,"Log to file (default stderr)") do | name |
-  #   Bio::Log::CLI.logger(name)
-  # end
-  #
-  # o.on("--trace options",String,"Set log level (default INFO, see bio-logger)") do | s |
-  #   Bio::Log::CLI.trace(s)
-  # end
-  # 
-  # o.on("-q", "--quiet", "Run quietly") do |q|
-  #   Bio::Log::CLI.trace('error')
-  # end
-  # 
-  # o.on("-v", "--verbose", "Run verbosely") do |v|
-  #   Bio::Log::CLI.trace('info')
-  # end
-  # 
-  # o.on("--debug", "Show debug messages") do |v|
-  #   Bio::Log::CLI.trace('debug')
-  # end
+  runner = Bio::TMHMM::TmHmmWrapper.new
 
-  o.separator ""
-  o.on_tail('-h', '--help', 'display this help and exit') do
-    options[:show_help] = true
+  Bio::FlatFile.auto(ARGF).each do |seq|
+    result = runner.calculate(seq.seq)
+    name = seq.definition
+
+    # Default output - a description of the TMDs for each input aaseq
+    if options[:filter_in] == false and options[:filter_out] == false
+      if result.has_domain?
+        # At least one TMD found. Output each on a separate line
+        result.transmembrane_domains.each do |tmd|
+          puts [
+          name,
+          result.transmembrane_type,
+          tmd.start,
+          tmd.stop,
+          tmd.orientation
+        ].join("\t")
+        end
+      else
+        puts [
+        name,
+        'No Transmembrane Domain Found'
+      ].join("\t")
+      end
+
+    elsif options[:filter_in]
+    	if result.has_domain?
+    		puts seq
+    	end
+    elsif options[:filter_out]
+    	unless result.has_domain?
+    		puts seq
+    	end
+    end
   end
 end
 
-begin
-  opts.parse!(ARGV)
-
-  # Uncomment the following when using the bio-logger 
-  # Bio::Log::CLI.configure('bio-tm_hmm')
-
-  # TODO: your code here
-  # use options for your logic
-rescue OptionParser::InvalidOption => e
-  options[:invalid_argument] = e.message
-end

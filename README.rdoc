@@ -2,7 +2,7 @@
 
 A bioruby plugin for running TMHMM automatically on multiple sequences in a FASTA file and manipulation of the results
 
-  
+  biotm_hmm -f proteome.fasta
 
 == Contributing to bio-tm_hmm
  
