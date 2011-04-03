@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bio-tm_hmm"
   gem.homepage = "http://github.com/wwood/bioruby-tm_hmm"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A bioruby plugin for interaction with the transmembrane predictor TMHMM}
+  gem.description = %Q{A bioruby plugin for interaction with the transmembrane predictor TMHMM}
   gem.email = "donttrustben@gmail.com"
   gem.authors = ["Ben J. Woodcroft"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
