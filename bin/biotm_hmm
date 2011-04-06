@@ -23,11 +23,11 @@ if $0 == __FILE__
       "\tfasta file can also be piped in on STDIN.",
       "\twithout arguments, a description of the transmembranes is printed out for each input sequence"
     ]
-    opts.on('-f','--filter-in','Print those sequences that have a transmembrane domain') do
-      options[:filter_in] = true
+    opts.on('-f','--filter-in [MIN_TRANSMEMBRANE_DOMAINS]','Print those sequences that have a transmembrane domain. If MIN_TRANSMEMBRANE_DOMAINS is defined, only those proteins with that many TMDs or more are printed out') do |m|
+      options[:filter_in] = m.to_i #gets set to 0 when optional MIN_TRANSMEMBRANE_DOMAINS is omitted
     end
-    opts.on('-g','--filter-out','Print those sequences that do NOT have a transmembrane domain') do
-      options[:filter_out] = true
+    opts.on('-g','--filter-out [MIN_TRANSMEMBRANE_DOMAINS]','Print those sequences that do NOT have a transmembrane domain. If MIN_TRANSMEMBRANE_DOMAINS is defined, only those proteins with that many TMDs or more are filtered out') do |m|
+      options[:filter_out] = m.to_i #gets set to 0 when optional MIN_TRANSMEMBRANE_DOMAINS is omitted
     end
   end
   o.parse!
@@ -58,12 +58,12 @@ if $0 == __FILE__
       ].join("\t")
       end
 
-    elsif options[:filter_in]
-    	if result.has_domain?
+    elsif options[:filter_in] != false
+    	if result.transmembrane_domains.length >= options[:filter_in]
     		puts seq
     	end
-    elsif options[:filter_out]
-    	unless result.has_domain?
+    elsif options[:filter_out] != false
+    	unless result.transmembrane_domains.length >= options[:filter_out]
     		puts seq
     	end
     end
