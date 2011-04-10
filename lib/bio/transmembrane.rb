@@ -51,6 +51,16 @@ module Bio
       def each
         @transmembrane_domains.each{|t| yield t}
       end
+    
+      def residue_number_contained?(residue_number)
+        contained = false
+        @transmembrane_domains.each do |tmd|
+          if tmd.start <= residue_number and tmd.stop >= residue_number
+            contained = true
+          end
+        end
+        contained
+      end
     end
     
     class OrientedTransmembraneDomainProtein<TransmembraneProtein
@@ -138,8 +148,16 @@ module Bio
       end
     end
     
+    # From Predicting transmembrane protein topology with a hidden markov model: application to complete g
+    #
+    # Another signal shown to be associated with transmembrane helices is
+    # the abundance of positively charged residues in the part of the
+    # sequence on the cytoplasmic side of the membrane, “the positive inside
+    # rule” (von Heijne 1986) and (von Heijne 1994).
+    #
+    # So, inside means cytosolic. So outside_in means type I transmembrane domain protein
     class OrientedTransmembraneDomain<TransmembraneDomainDefinition
-      # The orientation can either be inside out (like a type II transmembrane domain protein)
+     # The orientation can either be inside out (like a type II transmembrane domain protein)
       INSIDE_OUT = 'inside_out'
       # Or outside in, like a type I transmembrane domain protein)
       OUTSIDE_IN = 'outside_in'

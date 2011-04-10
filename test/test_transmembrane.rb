@@ -116,5 +116,31 @@ module Transmembrane
       assert_equal 1, tmd1.overlap_length(tmd2)
       assert_equal((3..3), tmd1.intersection(tmd2))
     end
+    
+    def test_residue_contained?
+      p = TransmembraneProtein.new
+      
+      # test none
+      p.transmembrane_domains = []
+      assert_equal false, p.residue_number_contained?(5)
+      
+      # test one
+      p.transmembrane_domains = [TransmembraneDomainDefinition.new(5,8)]
+      assert p.residue_number_contained?(5)
+      assert p.residue_number_contained?(6)
+      assert p.residue_number_contained?(8)
+      assert_equal false, p.residue_number_contained?(4)
+      assert_equal false, p.residue_number_contained?(9)
+      
+      # test 3
+      p.transmembrane_domains = [
+      TransmembraneDomainDefinition.new(1,10),
+      TransmembraneDomainDefinition.new(90,100),
+      TransmembraneDomainDefinition.new(16,24),
+      ]
+      assert p.residue_number_contained?(5)
+      assert p.residue_number_contained?(95)
+      assert_equal false, p.residue_number_contained?(150)
+    end
   end
 end
