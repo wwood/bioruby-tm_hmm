@@ -17,11 +17,11 @@ options = {
   :filter_out => false,
 }
 o = OptionParser.new do |opts|
-  opts.banner = [
-    'Usage: tm_hmm_wrapper.rb [-fg] [fasta_filename]',
+  opts.banner = ['',
+    'Usage: tm_hmm_wrapper.rb [-fg] [fasta_filename]','',
     "\tfasta file can also be piped in on STDIN.",
-    "\twithout arguments, a description of the transmembranes is printed out for each input sequence"
-  ]
+    "\twithout arguments, a description of the transmembranes is printed out for each input sequence",''
+  ].join("\n")
   opts.on('-f','--filter-in [MIN_TRANSMEMBRANE_DOMAINS]','Print those sequences that have a transmembrane domain. If MIN_TRANSMEMBRANE_DOMAINS is defined, only those proteins with that many TMDs or more are printed out') do |m|
     options[:filter_in] = m.to_i #gets set to 0 when optional MIN_TRANSMEMBRANE_DOMAINS is omitted
   end
