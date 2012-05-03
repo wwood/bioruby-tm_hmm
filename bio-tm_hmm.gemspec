@@ -4,67 +4,66 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{bio-tm_hmm}
-  s.version = "0.2.0"
+  s.name = "bio-tm_hmm"
+  s.version = "0.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Ben J. Woodcroft"]
-  s.date = %q{2011-04-06}
-  s.default_executable = %q{biotm_hmm}
-  s.description = %q{A bioruby plugin for interaction with the transmembrane predictor TMHMM}
-  s.email = %q{donttrustben@gmail.com}
-  s.executables = ["biotm_hmm"]
+  s.authors = ["Ben J Woodcroft"]
+  s.date = "2012-05-03"
+  s.description = "TODO: longer description of your gem"
+  s.email = "gmail.com after donttrustben"
+  s.executables = ["bio-tm_hmm"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
+    "README.md",
     "README.rdoc"
   ]
   s.files = [
     ".document",
+    ".travis.yml",
     "Gemfile",
     "LICENSE.txt",
+    "README.md",
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "bin/biotm_hmm",
-    "bio-tm_hmm.gemspec",
+    "bin/bio-tm_hmm",
     "lib/bio-tm_hmm.rb",
-    "lib/bio/appl/tmhmm/tmhmm_runner.rb",
-    "lib/bio/transmembrane.rb",
-    "test/data/falciparum1.fa",
+    "lib/bio-tm_hmm/tm_hmm.rb",
     "test/helper.rb",
-    "test/test_tm_hmm_wrapper.rb",
-    "test/test_transmembrane.rb"
+    "test/test_bio-tm_hmm.rb"
   ]
-  s.homepage = %q{http://github.com/wwood/bioruby-tm_hmm}
+  s.homepage = "http://github.com/wwood/bioruby-tm_hmm"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{A bioruby plugin for interaction with the transmembrane predictor TMHMM}
-  s.test_files = [
-    "test/helper.rb",
-    "test/test_tm_hmm_wrapper.rb",
-    "test/test_transmembrane.rb"
-  ]
+  s.rubygems_version = "1.8.21"
+  s.summary = "TODO: one-line summary of your gem"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<bio>, [">= 1.4.1"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_development_dependency(%q<bundler>, [">= 1.0.21"])
+      s.add_development_dependency(%q<bio>, [">= 1.4.2"])
+      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
     else
-      s.add_dependency(%q<bio>, [">= 1.4.1"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<rdoc>, ["~> 3.12"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_dependency(%q<bundler>, [">= 1.0.21"])
+      s.add_dependency(%q<bio>, [">= 1.4.2"])
+      s.add_dependency(%q<rdoc>, ["~> 3.12"])
     end
   else
-    s.add_dependency(%q<bio>, [">= 1.4.1"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<rdoc>, ["~> 3.12"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+    s.add_dependency(%q<bundler>, [">= 1.0.21"])
+    s.add_dependency(%q<bio>, [">= 1.4.2"])
+    s.add_dependency(%q<rdoc>, ["~> 3.12"])
   end
 end
 

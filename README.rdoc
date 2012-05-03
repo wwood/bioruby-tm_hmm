@@ -1,21 +1,50 @@
 = bio-tm_hmm
 
+{<img
+src="https://secure.travis-ci.org/wwood/bioruby-tm_hmm.png"
+/>}[http://travis-ci.org/#!/wwood/bioruby-tm_hmm]
+
 A bioruby plugin for running TMHMM automatically on multiple sequences in a FASTA file and manipulation of the results
+
+Note: this software is under active development!
+
+== Installation
+
+        gem install bio-tm_hmm
+
+== Usage
 
   biotm_hmm -f proteome.fasta
 
-== Contributing to bio-tm_hmm
+== Developers
+
+To use the library 
+
+        require 'bio-tm_hmm'
+
+The API doc is online. For more code examples see also the test files in
+the source tree.
+        
+== Project home page
+
+Information on the source tree, documentation, issues and how to contribute, see
+
+  http://github.com/wwood/bioruby-tm_hmm
+
+The BioRuby community is on IRC server: irc.freenode.org, channel: #bioruby.
+
+== Cite
+
+  If you use this software, please cite one of
  
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+* [BioRuby: bioinformatics software for the Ruby programming language](http://dx.doi.org/10.1093/bioinformatics/btq475)
+* [Biogem: an effective tool-based approach for scaling up open source software development in bioinformatics](http://dx.doi.org/10.1093/bioinformatics/bts080)
+
+== Biogems.info
+
+This Biogem is published at http://biogems.info/index.html#bio-tm_hmm
 
 == Copyright
 
-Copyright (c) 2011 Ben J. Woodcroft. See LICENSE.txt for
-further details.
+Copyright (c) 2012 Ben J Woodcroft. See LICENSE.txt for further details.
 
