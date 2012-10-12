@@ -22,11 +22,15 @@ o = OptionParser.new do |opts|
     "\tfasta file can also be piped in on STDIN.",
     "\twithout arguments, a description of the transmembranes is printed out for each input sequence",''
   ].join("\n")
-  opts.on('-f','--filter-in [MIN_TRANSMEMBRANE_DOMAINS]','Print those sequences that have a transmembrane domain. If MIN_TRANSMEMBRANE_DOMAINS is defined, only those proteins with that many TMDs or more are printed out') do |m|
+  opts.on('-f','--filter-in MIN_TRANSMEMBRANE_DOMAINS','Print those sequences that have at _least_ MIN_TRANSMEMBRANE_DOMAINS transmembrane domain(s). Prints out the sequences in FASTA format.') do |m|
     options[:filter_in] = m.to_i #gets set to 0 when optional MIN_TRANSMEMBRANE_DOMAINS is omitted
   end
-  opts.on('-g','--filter-out [MIN_TRANSMEMBRANE_DOMAINS]','Print those sequences that do NOT have a transmembrane domain. If MIN_TRANSMEMBRANE_DOMAINS is defined, only those proteins with that many TMDs or more are filtered out') do |m|
-    options[:filter_out] = m.to_i #gets set to 0 when optional MIN_TRANSMEMBRANE_DOMAINS is omitted
+  opts.on('-g','--filter-out MAX_TRANSMEMBRANE_DOMAINS','Print those sequences that have at _most_ MAX_TRANSMEMBRANE_DOMAINS transmembrane domain(s). Prints out the sequences in FASTA format.') do |m|
+    if m.nil?
+      options[:filter_out] = 1
+    else
+      options[:filter_out] = m.to_i
+    end
   end
 end
 o.parse!
@@ -39,6 +43,7 @@ Bio::FlatFile.auto(ARGF).each do |seq|
 
   # Default output - a description of the TMDs for each input aaseq
   if options[:filter_in] == false and options[:filter_out] == false
+    p result
     if result.has_domain?
       # At least one TMD found. Output each on a separate line
       result.transmembrane_domains.each do |tmd|
@@ -62,7 +67,7 @@ Bio::FlatFile.auto(ARGF).each do |seq|
   		puts seq
   	end
   elsif options[:filter_out] != false
-  	unless result.transmembrane_domains.length >= options[:filter_out]
+  	unless result.transmembrane_domains.length > options[:filter_out]
   		puts seq
   	end
   end

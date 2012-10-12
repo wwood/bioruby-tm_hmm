@@ -51,3 +51,4 @@ pkg
 Gemfile.lock
 *.gemspec
 bin/bio-tm_hmm.rb
+bin/bio-tm_hmm.rb
