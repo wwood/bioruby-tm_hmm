@@ -31,6 +31,11 @@ Rake::TestTask.new(:test) do |test|
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
 end
+Rake::TestTask.new(:test_without_tmhmm) do |test|
+  test.libs << 'lib' << 'test'
+  test.test_files = FileList['test/test*.rb'].reject{|f| f=='test/test_tm_hmm_wrapper.rb'}
+  test.verbose = true
+end
 
 task :default => :test
 

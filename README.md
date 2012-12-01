@@ -13,7 +13,14 @@ gem install bio-tm_hmm
 ## Usage
 
 ```
-bio-tm_hmm my.fasta
+Usage: bio-tm_hmm [-f NUM] [-g NUM] [fasta_filename]
+
+	fasta file can also be piped in on STDIN.
+	without arguments, a description of the transmembrane domains is printed out for each input sequence
+    -f MIN_TRANSMEMBRANE_DOMAINS,    Print those sequences that have at _least_ MIN_TRANSMEMBRANE_DOMAINS transmembrane domain(s). Prints out the sequences in FASTA format.
+        --filter-in
+    -g MAX_TRANSMEMBRANE_DOMAINS,    Print those sequences that have at _most_ MAX_TRANSMEMBRANE_DOMAINS transmembrane domain(s). Prints out the sequences in FASTA format.
+        --filter-out
 ```
 
 Where my.fasta is a FASTA file with one or more protein sequences in it. Output will be a description of the transmembrane domains predicted by TMHMM.
@@ -47,7 +54,7 @@ The BioRuby community is on IRC server: irc.freenode.org, channel: #bioruby.
 
   If you use this software, please cite:
 
-[Organellar proteomics reveals hundreds of novel nuclear proteins in the malaria parasite Plasmodium falciparum](genomebiology.com/2012/13/11/R108)
+[Organellar proteomics reveals hundreds of novel nuclear proteins in the malaria parasite Plasmodium falciparum](http://genomebiology.com/2012/13/11/R108)
 
 Sophie C Oehring, Ben J Woodcroft, Suzette Moes, Johanna Wetzel, Olivier Dietz, Andreas Pulfer, Chaitali Dekiwadia, Pascal Maeser, Christian Flueck, Kathrin Witmer, Nicolas MB Brancucci, Igor Niederwieser, Paul Jenoe, Stuart A Ralph and Till S Voss	
 
