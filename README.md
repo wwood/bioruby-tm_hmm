@@ -1,8 +1,6 @@
 # bio-tm_hmm
 
-{<img
-src="https://secure.travis-ci.org/wwood/bioruby-tm_hmm.png"
-/>}[http://travis-ci.org/#!/wwood/bioruby-tm_hmm]
+[![Build Status](https://secure.travis-ci.org/wwood/bioruby-sra.png)](http://travis-ci.org/#!/wwood/bioruby-tm_hmm)
 
 A bioruby plugin for running the transmembrane domain predictor TMHMM automatically on multiple sequences in a FASTA file and manipulation of the results.
 
