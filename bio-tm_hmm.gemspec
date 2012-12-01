@@ -5,24 +5,24 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-tm_hmm"
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben J. Woodcroft"]
-  s.date = "2012-05-03"
+  s.date = "2012-12-01"
   s.description = "A bioruby plugin for interaction with the transmembrane predictor TMHMM"
   s.email = "donttrustben@gmail.com"
   s.executables = ["bio-tm_hmm"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     ".travis.yml",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "bin/bio-tm_hmm",
@@ -32,13 +32,14 @@ Gem::Specification.new do |s|
     "lib/bio/transmembrane.rb",
     "test/data/falciparum1.fa",
     "test/helper.rb",
+    "test/test_tm_hmm_parser.rb",
     "test/test_tm_hmm_wrapper.rb",
     "test/test_transmembrane.rb"
   ]
   s.homepage = "http://github.com/wwood/bioruby-tm_hmm"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.21"
+  s.rubygems_version = "1.8.24"
   s.summary = "A bioruby plugin for interaction with the transmembrane predictor TMHMM"
 
   if s.respond_to? :specification_version then
