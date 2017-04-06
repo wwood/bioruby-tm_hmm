@@ -45,7 +45,6 @@ Bio::FlatFile.auto(ARGF).each do |seq|
 
   # Default output - a description of the TMDs for each input aaseq
   if options[:filter_in] == false and options[:filter_out] == false
-    p result
     if result.has_domain?
       # At least one TMD found. Output each on a separate line
       result.transmembrane_domains.each do |tmd|
