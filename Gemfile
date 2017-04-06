@@ -3,11 +3,11 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 gem "bio", ">= 1.4.2"
-gem "test-unit", "~>3.2"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
+  gem "test-unit", "~>3.2"
   gem "shoulda", ">= 0"
   gem "rdoc", "~> 3.12"
   gem "jeweler", "~> 2.3"
